@@ -46,8 +46,8 @@ float qinticInOut(float t) {
 void main() {
   vUv = uv;
 
-  float norm = 4.;
-  norm = 0.5;
+  float norm = 0.5;
+  
   vec3 newpos = position;
   float offset = ( dot(uAxis2,position) +norm/2.)/norm;
 
