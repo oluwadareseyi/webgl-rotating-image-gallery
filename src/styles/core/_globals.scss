@@ -1,0 +1,87 @@
+html {
+  box-sizing: border-box;
+  font-size: calc(100vw / 1440 * 10);
+  width: 100%;
+
+  @include media(">desktop") {
+    font-size: 10px;
+  }
+}
+
+html,
+body {
+  overscroll-behavior: none;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  height: 100%;
+  font-family: $font-sauce, sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.3;
+  background: #fffdf8;
+  color: $black;
+  font-feature-settings: "case" on;
+}
+
+canvas {
+  position: fixed;
+  pointer-events: none;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.c-page {
+  .c-thumbnail {
+    // position: fixed;
+    // top: 50%;
+    // left: 50%;
+    // transform: translate(-50%, -50%);
+    // height: 40rem;
+    // width: 30rem;
+    // pointer-events: none;
+    // opacity: 0;
+
+    .media {
+      display: inline-flex;
+      img {
+        width: 100%;
+        visibility: hidden;
+      }
+    }
+  }
+}
+
+html.lenis {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+.c-nav__name {
+  position: fixed;
+  top: 24px;
+  left: 40px;
+  text-transform: uppercase;
+}
+
+.c-footer__name {
+  position: fixed;
+  bottom: 24px;
+  left: 40px;
+  text-transform: uppercase;
+}
