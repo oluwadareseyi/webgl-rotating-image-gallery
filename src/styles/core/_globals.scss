@@ -28,6 +28,8 @@ canvas {
   right: 0;
   bottom: 0;
   left: 0;
+  opacity: 0;
+  transition: opacity 1s ease;
 }
 
 /* Page Loader */
@@ -42,14 +44,20 @@ html::after {
   margin: -30px 0 0 -30px;
   border-radius: 50%;
   opacity: 0.4;
-  background: #fffdf8;
+  background: $black;
   animation: loaderAnim 0.7s linear infinite alternate forwards;
   transition: opacity 0.4s ease;
 }
 
-html.loaded::after {
-  animation-play-state: paused;
-  opacity: 0 !important;
+html.loaded {
+  &::after {
+    animation-play-state: paused;
+    opacity: 0 !important;
+  }
+
+  canvas {
+    opacity: 1;
+  }
 }
 
 @keyframes loaderAnim {
