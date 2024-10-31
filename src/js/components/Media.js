@@ -172,14 +172,14 @@ export default class Media {
     this.isBefore = this.plane.position.y + planeOffset < -viewportOffset;
     this.isAfter = this.plane.position.y - planeOffset > viewportOffset;
 
-    if (direction === "right" && this.isBefore) {
+    if (direction === "up" && this.isBefore) {
       this.extra -= this.heightTotal;
 
       this.isBefore = false;
       this.isAfter = false;
     }
 
-    if (direction === "left" && this.isAfter) {
+    if (direction === "down" && this.isAfter) {
       this.extra += this.heightTotal;
 
       this.isBefore = false;

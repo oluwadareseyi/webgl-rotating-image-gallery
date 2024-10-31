@@ -175,9 +175,9 @@ export default class Canvas {
     );
 
     if (this.scroll.current > this.scroll.last) {
-      this.direction = "right";
+      this.direction = "up";
     } else {
-      this.direction = "left";
+      this.direction = "down";
     }
 
     if (this.medias) {
