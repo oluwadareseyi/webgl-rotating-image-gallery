@@ -1,23 +1,21 @@
 import { Renderer, Camera, Transform, Plane } from "ogl";
 import Media from "./Media.js";
-// import image from "/img/after-yang.jpg";
-import AutoBind from "../utils/bind.js";
 import NormalizeWheel from "normalize-wheel";
 import { lerp } from "../utils/math";
 
 export default class Canvas {
   constructor() {
     this.images = [
-      "/helix-effect/img/11.webp",
-      "/helix-effect/img/2.webp",
-      "/helix-effect/img/3.webp",
-      "/helix-effect/img/4.webp",
-      "/helix-effect/img/5.webp",
-      "/helix-effect/img/6.webp",
-      "/helix-effect/img/7.webp",
-      "/helix-effect/img/8.webp",
-      "/helix-effect/img/9.webp",
-      "/helix-effect/img/10.webp",
+      "/img/11.webp",
+      "/img/2.webp",
+      "/img/3.webp",
+      "/img/4.webp",
+      "/img/5.webp",
+      "/img/6.webp",
+      "/img/7.webp",
+      "/img/8.webp",
+      "/img/9.webp",
+      "/img/10.webp",
     ];
 
     this.scroll = {
@@ -39,7 +37,27 @@ export default class Canvas {
     this.update();
 
     this.addEventListeners();
+    this.createPreloader();
   }
+
+  createPreloader() {
+    Array.from(this.images).forEach((source) => {
+      const image = new Image();
+
+      this.loaded = 0;
+
+      image.src = source;
+      image.onload = (_) => {
+        this.loaded += 1;
+
+        if (this.loaded === this.images.length) {
+          document.documentElement.classList.remove("loading");
+          document.documentElement.classList.add("loaded");
+        }
+      };
+    });
+  }
+
   createRenderer() {
     this.renderer = new Renderer({
       canvas: document.querySelector("#gl"),
@@ -112,11 +130,11 @@ export default class Canvas {
   easeInOut(t) {
     return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
   }
-  onScroll({ scroll }) {
-    if (this.medias) {
-      this.medias.forEach((media) => media.onScroll(scroll));
-    }
-  }
+  // onScroll({ scroll }) {
+  //   if (this.medias) {
+  //     this.medias.forEach((media) => media.onScroll(scroll));
+  //   }
+  // }
 
   onTouchDown(event) {
     this.isDown = true;

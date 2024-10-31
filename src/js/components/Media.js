@@ -16,7 +16,6 @@ export default class Media {
     index,
   }) {
     this.extra = 0;
-    console.log(image);
 
     this.gl = gl;
     this.geometry = geometry;

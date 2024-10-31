@@ -1,11 +1,6 @@
 html {
   box-sizing: border-box;
-  font-size: calc(100vw / 1440 * 10);
   width: 100%;
-
-  @include media(">desktop") {
-    font-size: 10px;
-  }
 }
 
 html,
@@ -35,53 +30,31 @@ canvas {
   left: 0;
 }
 
-.c-page {
-  .c-thumbnail {
-    // position: fixed;
-    // top: 50%;
-    // left: 50%;
-    // transform: translate(-50%, -50%);
-    // height: 40rem;
-    // width: 30rem;
-    // pointer-events: none;
-    // opacity: 0;
+/* Page Loader */
+html::after {
+  content: "";
+  position: fixed;
+  z-index: 1000;
+  top: 50%;
+  left: 50%;
+  width: 60px;
+  height: 60px;
+  margin: -30px 0 0 -30px;
+  border-radius: 50%;
+  opacity: 0.4;
+  background: #fffdf8;
+  animation: loaderAnim 0.7s linear infinite alternate forwards;
+  transition: opacity 0.4s ease;
+}
 
-    .media {
-      display: inline-flex;
-      img {
-        width: 100%;
-        visibility: hidden;
-      }
-    }
+html.loaded::after {
+  animation-play-state: paused;
+  opacity: 0 !important;
+}
+
+@keyframes loaderAnim {
+  to {
+    opacity: 1;
+    transform: scale3d(0.5, 0.5, 1);
   }
-}
-
-html.lenis {
-  height: auto;
-}
-.lenis.lenis-smooth {
-  scroll-behavior: auto;
-}
-.lenis.lenis-smooth [data-lenis-prevent] {
-  overscroll-behavior: contain;
-}
-.lenis.lenis-stopped {
-  overflow: hidden;
-}
-.lenis.lenis-scrolling iframe {
-  pointer-events: none;
-}
-
-.c-nav__name {
-  position: fixed;
-  top: 24px;
-  left: 40px;
-  text-transform: uppercase;
-}
-
-.c-footer__name {
-  position: fixed;
-  bottom: 24px;
-  left: 40px;
-  text-transform: uppercase;
 }
