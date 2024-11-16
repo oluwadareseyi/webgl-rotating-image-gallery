@@ -11,8 +11,8 @@ uniform mat3 normalMatrix;
 uniform float uPosition;
 uniform float uTime;
 uniform float uSpeed;
-uniform vec3 uAxis;
-uniform vec3 uAxis2;
+uniform vec3 distortionAxis;
+uniform vec3 rotationAxis;
 uniform float uDistortion;
  
 varying vec2 vUv;
@@ -49,13 +49,13 @@ void main() {
   float norm = 0.5;
   
   vec3 newpos = position;
-  float offset = ( dot(uAxis2,position) +norm/2.)/norm;
+  float offset = ( dot(distortionAxis,position) +norm/2.)/norm;
 
   float localprogress = clamp( (fract(uPosition * 5.0 * 0.01) - 0.01*uDistortion*offset)/(1. - 0.01*uDistortion),0.,2.); 
 
   localprogress = qinticInOut(localprogress)*PI;
 
-  newpos = rotate(newpos,uAxis,localprogress);
+  newpos = rotate(newpos,rotationAxis,localprogress);
  
   gl_Position = projectionMatrix * modelViewMatrix * vec4(newpos, 1.0);
 }
