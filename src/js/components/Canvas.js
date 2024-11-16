@@ -2,6 +2,7 @@ import { Renderer, Camera, Transform, Plane } from "ogl";
 import Media from "./Media.js";
 import NormalizeWheel from "normalize-wheel";
 import { lerp } from "../utils/math";
+import AutoBind from "../utils/bind";
 
 export default class Canvas {
   constructor() {
@@ -24,6 +25,8 @@ export default class Canvas {
       target: 0,
       last: 0,
     };
+
+    AutoBind(this);
 
     this.createRenderer();
     this.createCamera();
@@ -124,17 +127,11 @@ export default class Canvas {
           viewport: this.viewport,
         })
       );
-      this.onScroll({ scroll: window.scrollY });
     }
   }
   easeInOut(t) {
     return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
   }
-  // onScroll({ scroll }) {
-  //   if (this.medias) {
-  //     this.medias.forEach((media) => media.onScroll(scroll));
-  //   }
-  // }
 
   onTouchDown(event) {
     this.isDown = true;
@@ -161,10 +158,6 @@ export default class Canvas {
     const speed = normalized.pixelY;
 
     this.scroll.target += speed * 0.005;
-
-    if (this.medias) {
-      this.medias.forEach((media) => media.onWheel());
-    }
   }
 
   update() {
@@ -191,19 +184,19 @@ export default class Canvas {
 
     this.scroll.last = this.scroll.current;
 
-    window.requestAnimationFrame(this.update.bind(this));
+    window.requestAnimationFrame(this.update);
   }
   addEventListeners() {
-    window.addEventListener("resize", this.onResize.bind(this));
-    window.addEventListener("wheel", this.onWheel.bind(this));
-    window.addEventListener("mousewheel", this.onWheel.bind(this));
+    window.addEventListener("resize", this.onResize);
+    window.addEventListener("wheel", this.onWheel);
+    window.addEventListener("mousewheel", this.onWheel);
 
-    window.addEventListener("mousedown", this.onTouchDown.bind(this));
-    window.addEventListener("mousemove", this.onTouchMove.bind(this));
-    window.addEventListener("mouseup", this.onTouchUp.bind(this));
+    window.addEventListener("mousedown", this.onTouchDown);
+    window.addEventListener("mousemove", this.onTouchMove);
+    window.addEventListener("mouseup", this.onTouchUp);
 
-    window.addEventListener("touchstart", this.onTouchDown.bind(this));
-    window.addEventListener("touchmove", this.onTouchMove.bind(this));
-    window.addEventListener("touchend", this.onTouchUp.bind(this));
+    window.addEventListener("touchstart", this.onTouchDown);
+    window.addEventListener("touchmove", this.onTouchMove);
+    window.addEventListener("touchend", this.onTouchUp);
   }
 }
