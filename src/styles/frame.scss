@@ -1,0 +1,98 @@
+$padding: 2rem;
+$fontsize: 12px;
+$gap: 1rem;
+$column-gap: 1rem;
+$breakpoint: 53rem;
+
+/* Demo ad style */
+
+body #cdawrap {
+  top: $padding;
+  right: $padding;
+  left: auto;
+  background-color: transparent;
+  border: 1px solid rgb(167 167 167 / 40%);
+  --cda-sp-color: #767677;
+  --cda-remove-color: #767677;
+  border-radius: 20px;
+}
+
+body #cdawrap .carbon-img img {
+  border-radius: 13px
+}
+
+body #cdawrap .carbon-text {
+  color: #000;
+  font-size: $fontsize;
+  font-weight: 400;
+}
+
+.frame {
+  font-size: $fontsize;
+  padding: $padding;
+  display: grid;
+  z-index: 1000;
+  position: relative;
+  grid-row-gap: $gap;
+  grid-column-gap: $column-gap;
+  pointer-events: none;
+  justify-items: start;
+  grid-template-columns: auto auto;
+  grid-template-areas: 
+    "title"
+    "back"
+    "archive"
+    "github"
+    "tags"
+    "sponsor";
+
+  // Nested element styles
+  &__title {
+    grid-area: title;
+    font-size: inherit;
+    margin: 0;  
+  }
+
+  &__back {
+    grid-area: back;
+    justify-self: start;
+  }
+
+  &__archive {
+    grid-area: archive;
+    justify-self: start;
+  }
+
+  &__github {
+    grid-area: github;
+  }
+
+  &__tags {
+    grid-area: tags;
+    display: flex;
+    flex-wrap: wrap;
+    gap: $gap;
+  }
+
+  a {
+    pointer-events: auto;
+  }
+
+  @media screen and (min-width: $breakpoint) {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    grid-template-columns: min-content min-content auto 1fr;
+    grid-template-rows: auto auto auto;
+    align-content: space-between;
+    grid-template-areas: 
+      "title title title sponsor"
+      "back github archive ..."
+      "tags tags tags ...";
+
+    &__tags {
+      align-self: end;
+    }
+  }
+}

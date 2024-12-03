@@ -1,3 +1,9 @@
+$link-color: #767677; // Default link color
+$link-hover-color: #000; // Hover link color
+$focus-visible-outline: red; // Outline color for focus-visible
+$focus-background: lightgrey; // Background color for focus
+
+
 html {
   box-sizing: border-box;
   width: 100%;
@@ -19,6 +25,36 @@ body {
   background: #fffdf8;
   color: $black;
   font-feature-settings: "case" on;
+}
+
+a {
+  text-decoration: none;
+  color: $link-color;
+  outline: none;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+    color: $link-hover-color;
+    outline: none;
+  }
+
+  &:focus {
+    // Fallback style for browsers that don't support :focus-visible
+    outline: none;
+    background: $focus-background;
+
+    &:not(:focus-visible) {
+      // Remove focus indicator on mouse-focus for browsers that support :focus-visible
+      background: transparent;
+    }
+  }
+
+  &:focus-visible {
+    // Noticeable focus style for keyboard-focus on browsers that support :focus-visible
+    outline: 2px solid $focus-visible-outline;
+    background: transparent;
+  }
 }
 
 canvas {
