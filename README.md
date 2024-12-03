@@ -25,7 +25,7 @@ Follow Codrops: [Bluesky](https://bsky.app/profile/codrops.bsky.social), [Facebo
 ## License
 [MIT](LICENSE)
 
-Made with :blue_heart: by [Oluwaseyi Oluwadare] for [Codrops](http://www.codrops.com)
+Made with :blue_heart: by [Oluwaseyi Oluwadare](https://www.seyi.dev/) for [Codrops](http://www.codrops.com)
 
 
 
