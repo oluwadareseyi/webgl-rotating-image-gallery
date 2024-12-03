@@ -2,7 +2,7 @@
 
 Demo for the tutorial on how to create a progressive image rotation effect with WebGL, using OGL and GLSL shaders.
 
-![Image](https://codrops-1f606.kxcdn.com/codrops/wp-content/uploads/2024/11/Screenshot-2024-11-08-at-7.44.57%E2%80%AFpm-1536x952.png?x51189)
+![Image](https://tympanus.net/codrops/wp-content/uploads/2024/12/rotatedgallery.jpg)
 
 [Article on Codrops](https://tympanus.net/codrops/?p=82391)
 
